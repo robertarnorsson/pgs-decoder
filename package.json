@@ -1,0 +1,31 @@
+{
+  "name": "pgs-decoder",
+  "version": "0.1.0",
+  "description": "A TypeScript decoder for PGS (Presentation Graphic Stream) Blu-ray subtitle files (.sup)",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "keywords": [
+    "pgs",
+    "sup",
+    "subtitle",
+    "bluray",
+    "decoder",
+    "typescript"
+  ],
+  "author": "",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "test": "node --experimental-strip-types --test \"tests/**/*.test.ts\"",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@types/node": "^26.5.0",
+    "typescript": "^7.0.2"
+  },
+  "packageManager": "pnpm@12.3.4"
+}
