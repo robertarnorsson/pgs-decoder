@@ -19,7 +19,9 @@
   "license": "MIT",
   "type": "module",
   "scripts": {
+    "start": "node --experimental-strip-types src/index.ts",
     "build": "tsc",
+    "build:browser": "tsc -p tsconfig.browser.json",
     "test": "node --experimental-strip-types --test \"tests/**/*.test.ts\"",
     "typecheck": "tsc --noEmit"
   },
