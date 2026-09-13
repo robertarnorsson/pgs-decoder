@@ -1,9 +1,17 @@
 {
   "name": "pgs-decoder",
   "version": "0.1.0",
+  "private": true,
   "description": "A TypeScript decoder for PGS (Presentation Graphic Stream) Blu-ray subtitle files (.sup)",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "sideEffects": false,
   "files": [
     "dist"
   ],
@@ -15,19 +23,20 @@
     "decoder",
     "typescript"
   ],
-  "author": "",
+  "author": "robertarnorsson",
   "license": "MIT",
   "type": "module",
   "scripts": {
-    "start": "node --experimental-strip-types src/index.ts",
-    "build": "tsc",
-    "build:browser": "tsc -p tsconfig.browser.json",
-    "test": "node --experimental-strip-types --test \"tests/**/*.test.ts\"",
-    "typecheck": "tsc --noEmit"
+    "dev": "pnpm build && vite --open /demo/",
+    "build": "vite build && tsc -p tsconfig.build.json",
+    "typecheck": "tsc --noEmit",
+    "test": "node --test \"tests/**/*.test.ts\"",
+    "demo:media": "node scripts/make-demo-media.js"
   },
   "devDependencies": {
     "@types/node": "^26.5.0",
-    "typescript": "^7.0.2"
+    "typescript": "^7.0.2",
+    "vite": "^8.3.0"
   },
   "packageManager": "pnpm@12.3.4"
 }

@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>pgs-decoder</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <div class="picker">
+      <h1>pgs-decoder</h1>
+      <label class="file">
+        <input id="video-file" type="file" accept="video/*" />
+        <span>1. Video</span>
+        <small id="video-name">Choose file</small>
+      </label>
+      <label class="file">
+        <input id="subtitle-file" type="file" accept=".sup" />
+        <span>2. Subtitles</span>
+        <small id="subtitle-name">Choose file</small>
+      </label>
+      <button class="sample">Use the sample instead</button>
+    </div>
+
+    <div class="player paused" hidden>
+      <video></video>
+
+      <aside class="debug">
+        <dl>
+          <dt>Time</dt>
+          <dd id="time">-</dd>
+          <dt>Display set</dt>
+          <dd id="display-set">-</dd>
+          <dt>PTS</dt>
+          <dd id="pts">-</dd>
+          <dt>Composition</dt>
+          <dd id="composition">-</dd>
+          <dt>Palette</dt>
+          <dd id="palette">-</dd>
+          <dt>Draw</dt>
+          <dd id="draw-time">-</dd>
+          <dt>Decode</dt>
+          <dd id="decode-time">-</dd>
+          <dt>Paint</dt>
+          <dd id="paint-time">-</dd>
+          <dt>Pixels</dt>
+          <dd id="pixels">-</dd>
+        </dl>
+        <h2>Segments</h2>
+        <ol id="segments"></ol>
+        <h2>Objects</h2>
+        <ol id="objects"></ol>
+      </aside>
+
+      <div class="settings" hidden>
+        <label>Subtitles <input name="visible" type="checkbox" checked /></label>
+        <label>Forced only <input name="forcedOnly" type="checkbox" /></label>
+        <label>Delay (s) <input name="delay" type="number" step="0.1" value="0" /></label>
+        <label>Size <input name="scale" type="range" min="0.5" max="2" step="0.05" value="1" /></label>
+        <label>Opacity <input name="opacity" type="range" min="0.1" max="1" step="0.05" value="1" /></label>
+        <label>
+          Colors
+          <select name="colorSpace">
+            <option value="auto">Auto</option>
+            <option value="bt709">BT.709</option>
+            <option value="bt601">BT.601</option>
+          </select>
+        </label>
+      </div>
+
+      <div class="controls">
+        <div class="timeline">
+          <span class="timeline-time"></span>
+        </div>
+        <div class="bar">
+          <button class="play" title="Play (Space)">
+            <svg class="play-icon" viewBox="0 0 24 24"><path d="M7 4.5v15l12-7.5z" /></svg>
+            <svg class="pause-icon" viewBox="0 0 24 24"><path d="M6.5 5H10v14H6.5zM14 5h3.5v14H14z" /></svg>
+          </button>
+          <button class="previous-subtitle" title="Previous subtitle (Shift + Left)">
+            <svg viewBox="0 0 24 24"><path d="M18 5v14l-9-7zM6 5h2v14H6z" /></svg>
+          </button>
+          <button class="next-subtitle" title="Next subtitle (Shift + Right)">
+            <svg viewBox="0 0 24 24"><path d="M6 5v14l9-7zM16 5h2v14h-2z" /></svg>
+          </button>
+          <span class="time">00:00 / 00:00</span>
+          <button class="debug-toggle" title="Debug info">
+            <svg viewBox="0 0 24 24">
+              <path class="stroke" d="M12 3a9 9 0 1 1 0 18 9 9 0 0 1 0-18M12 11v5M12 7.5h.01" />
+            </svg>
+          </button>
+          <button class="settings-toggle" title="Subtitle settings">
+            <svg viewBox="0 0 24 24">
+              <path class="stroke" d="M4 7h9M17 7h3M4 17h3M11 17h9M15 5v4M9 15v4" />
+            </svg>
+          </button>
+          <button class="mute" title="Mute (M)">
+            <svg class="volume-icon" viewBox="0 0 24 24">
+              <path d="M3 9h4l5-4v14l-5-4H3z" />
+              <path class="stroke" d="M16 9a4 4 0 0 1 0 6M18.5 6.5a7.5 7.5 0 0 1 0 11" />
+            </svg>
+            <svg class="muted-icon" viewBox="0 0 24 24">
+              <path d="M3 9h4l5-4v14l-5-4H3z" />
+              <path class="stroke" d="m16 9 6 6m0-6-6 6" />
+            </svg>
+          </button>
+          <div class="volume" title="Volume"></div>
+          <button class="fullscreen" title="Fullscreen (F)">
+            <svg class="enter-fullscreen-icon" viewBox="0 0 24 24">
+              <path class="stroke" d="M4 9V4h5M15 4h5v5M20 15v5h-5M9 20H4v-5" />
+            </svg>
+            <svg class="exit-fullscreen-icon" viewBox="0 0 24 24">
+              <path class="stroke" d="M9 4v5H4M20 9h-5V4M15 20v-5h5M4 15h5v5" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script type="module" src="./main.js"></script>
+  </body>
+</html>

@@ -25,6 +25,7 @@ Thumbs.db
 npm-debug.log*
 pnpm-debug.log*
 
-# PGS test fixtures (copyrighted Blu-ray extracts)
+# Subtitle files (Blu-ray extracts are copyrighted), except the generated ones
 *.sup
-fixtures/*.sup
+!tests/fixtures/**/*.sup
+!demo/sample.sup
